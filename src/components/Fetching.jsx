@@ -75,6 +75,7 @@
 import { useState } from "react";
 import axios from "axios";
 import Button from "./Button";
+import UserDataComponent from "./UserDataComponent";
 
 function Fetching() {
   const [users, setUsers] = useState([]);
@@ -87,19 +88,7 @@ function Fetching() {
   return (
     <div>
     <Button fetchData={fetchData}/>
-      {users && (
-        <div key={users.id}>
-          <ul>
-            <li>Email: {users.email}</li>
-            <li>
-              Name: {users.first_name} {users.last_name}
-            </li>
-          </ul>
-          <div>
-            <img src={users.avatar} alt={users.first_name} />
-          </div>
-        </div>
-      )}
+      {users && <UserDataComponent users={users}/>}
 
       <img
         src="https://pdtxar.com/wp-content/uploads/2019/04/person-placeholder.jpg"
