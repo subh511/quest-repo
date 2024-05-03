@@ -73,3 +73,25 @@
 // export default Fetching;
 
 
+import axios from "axios";
+import { useEffect, useState } from "react";
+
+
+
+export default Fetching(){
+
+    const [user,setUser] = useState([])
+
+    useEffect(()=>{
+        const fetchData = async() => {
+            let response = await axios.get(`https://reqres.in/api/users/1`)
+            console.log(response)
+        }
+        fetchData()
+    },[])
+
+    return(
+        <div>
+        </div>
+    )
+}
