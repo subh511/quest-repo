@@ -74,35 +74,37 @@
 
 import { useState } from "react";
 import axios from "axios";
+import Button from "./Button";
 
 function Fetching() {
   const [users, setUsers] = useState([]);
 
-    async function fetchData(userId) {
-      let response = await axios.get(`https://reqres.in/api/users/${userId}`);
-      setUsers(response.data.data);
-    }
+  async function fetchData(userId) {
+    let response = await axios.get(`https://reqres.in/api/users/${userId}`);
+    setUsers(response.data.data);
+  }
 
   return (
     <div>
-    <button className="px-4 rounded-md p-4 mx-4 mt-4 bg-slate-300 font-bold" onClick={()=>fetchData(1)}>1</button>
-    <button className="px-4 rounded-md p-4 mx-4 mt-4 bg-slate-300 font-bold" onClick={()=>fetchData(2)}>2</button>
-    <button className="px-4 rounded-md p-4 mx-4 mt-4 bg-slate-300 font-bold" onClick={()=>fetchData(3)}>3</button>
-    <button className="px-4 rounded-md p-4 mx-4 mt-4 bg-slate-300 font-bold" onClick={()=>fetchData(4)}>4</button>
+    <Button fetchData={fetchData}/>
       {users && (
-          <div key={users.id}>
-            <ul>
-              <li>Email: {users.email}</li>
-              <li>
-                Name: {users.first_name} {users.last_name}
-              </li>
-            </ul>
-            <div>
-              <img src={users.avatar} alt={users.first_name} />
-            </div>
+        <div key={users.id}>
+          <ul>
+            <li>Email: {users.email}</li>
+            <li>
+              Name: {users.first_name} {users.last_name}
+            </li>
+          </ul>
+          <div>
+            <img src={users.avatar} alt={users.first_name} />
           </div>
-        )
-      }
+        </div>
+      )}
+
+      <img
+        src="https://pdtxar.com/wp-content/uploads/2019/04/person-placeholder.jpg"
+        alt="none"
+      />
     </div>
   );
 }
